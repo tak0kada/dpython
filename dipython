@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run -v `pwd`:/root/ -it --rm tak0kada/python-docker-env ipython $@
