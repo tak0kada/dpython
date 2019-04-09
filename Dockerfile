@@ -1,5 +1,6 @@
 FROM archlinux/base
 USER root
+WORKDIR /workdir
 
-COPY build_script.sh / build_script.sh
-RUN bash ./build_script.sh
+COPY build_script.sh /build/build_script.sh
+RUN bash /build/build_script.sh

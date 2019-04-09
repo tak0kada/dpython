@@ -2,6 +2,7 @@
 
 set -euxo pipefail
 
+mkdir -p /build && cd /build
 #----------------------
 # reference:
 #   https://forum.antergos.com/topic/1933/is-it-possible-to-add-antergos-repo-to-arch/2
@@ -32,11 +33,17 @@ printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 mkdir /home/builduser
 chown builduser:builduser /home/builduser
 
+#------------------
+# x-window-system
+#------------------
+pacman -S --noconfirm xorg-server xterm
+
 #-------------
 # python
 #-------------
 sudo -u builduser bash -c 'yay -S --noconfirm jupyter'
 sudo -u builduser bash -c 'yay -S --noconfirm base base-devel gcc clang cmake boost boost-libs openmp openmpi'
+sudo pacman -S --noconfirm tk
 sudo -u builduser bash -c 'yay -S --noconfirm python python-pip python-numpy python-matplotlib python-scipy python-sympy python-pandas ipython'
 
 #-------------
